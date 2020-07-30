@@ -7,22 +7,28 @@ public class Mover : MonoBehaviour
 {
     void Update()
     {
-
+        transform.LookAt(LookAtCursor());
         if (Input.GetMouseButton(0))
         {
-            MoveToCursor();
+            LookAtCursor();
         }
         UpdateAnimator();
     }
-    private void MoveToCursor()
+    private Vector3 LookAtCursor()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         bool hasHit = Physics.Raycast(ray, out hit);
-        if(hasHit)
+        if (hasHit)
         {
-            GetComponent<NavMeshAgent>().destination = hit.point;
+            Vector3 tarPos = new Vector3(hit.point.x, 0, hit.point.z);
+            return tarPos;
         }
+        //if(hasHit)
+        //{
+        //  GetComponent<NavMeshAgent>().destination = hit.point;
+        //}
+        return Vector3.zero;
     }
     private void UpdateAnimator()
     {
