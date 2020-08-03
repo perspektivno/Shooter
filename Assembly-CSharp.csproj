@@ -69,6 +69,8 @@
     <Compile Include="Assets\Scripts\PlayerController\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Weapon.cs" />
     <Compile Include="Assets\Scripts\PlayerController\WeaponData.cs" />
+    <Compile Include="Assets\Scripts\UiController\LoadScene.cs" />
+    <Compile Include="Assets\Scripts\UiController\UI.cs" />
     <Compile Include="Assets\Scripts\UnitStats\Health.cs" />
     <Compile Include="Assets\Scripts\json.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
