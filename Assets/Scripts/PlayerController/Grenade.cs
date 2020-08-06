@@ -8,6 +8,7 @@ public class Grenade : MonoBehaviour
     float countdown;
     bool hasExploded = false;
     public GameObject explosionEffect;
+    //private GameObject eff;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,22 +21,21 @@ public class Grenade : MonoBehaviour
         countdown -= Time.deltaTime;
         if(countdown<=0f && !hasExploded)
         {
-            Explode();
+            //Explode();
             hasExploded = true;
         }
     }
     void Explode()
     {
-        Instantiate(explosionEffect, transform.position, transform.rotation);
-        //eff.SetActive(true);
-        Destroy(gameObject);
-        Invoke("MyFunction", 10);
-        
+        GameObject eff =  Instantiate(explosionEffect, transform.position, transform.rotation);
+        eff.SetActive(true);
+        Destroy(gameObject); 
     }
-    void MyFunction()
+    private void OnCollisionEnter(Collision collision)
     {
-        explosionEffect.SetActive(false);
-
-
+        if(collision.collider.tag == "Ground")
+        {
+            Explode();
+        }
     }
 }
