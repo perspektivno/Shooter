@@ -3,9 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - Shootable
   - Ground
+=======
+  tags: []
+>>>>>>> 9453cb118a0f0fae62337272dab216663a26001a
   layers:
   - Default
   - TransparentFX
@@ -15,9 +19,15 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
   - Lighting
   - Ground
   - Postprocessing
+=======
+  - 
+  - 
+  - 
+>>>>>>> 9453cb118a0f0fae62337272dab216663a26001a
   - 
   - 
   - 
@@ -40,9 +50,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+<<<<<<< HEAD
   - name: Fire
     uniqueID: 3804908061
     locked: 0
+=======
+>>>>>>> 9453cb118a0f0fae62337272dab216663a26001a
   - name: Default
     uniqueID: 0
     locked: 0
