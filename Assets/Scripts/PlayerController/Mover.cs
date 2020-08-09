@@ -8,12 +8,11 @@ namespace Shooter.PlayerController
     public class Mover : MonoBehaviour
     {
         private CharacterController characterController;
-        private Animator animator;
         [SerializeField] private float moveSpeed = 100;
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
-            animator = GetComponentInChildren<Animator>();
+            //animator = GetComponentInChildren<Animator>();
         }
         void Update()
         {

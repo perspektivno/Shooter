@@ -2,40 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grenade : MonoBehaviour
+namespace Shooter.PlayerController
 {
-    public float delay = 3f;
-    float countdown;
-    bool hasExploded = false;
-    public GameObject explosionEffect;
-    //private GameObject eff;
-    // Start is called before the first frame update
-    void Start()
+    public class Grenade : MonoBehaviour
     {
-        countdown = delay;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        countdown -= Time.deltaTime;
-        if(countdown<=0f && !hasExploded)
+        public float delay = 3f;
+        float countdown;
+        bool hasExploded = false;
+        public GameObject explosionEffect;
+        //private GameObject eff;
+        // Start is called before the first frame update
+        void Start()
         {
-            //Explode();
-            hasExploded = true;
+            countdown = delay;
         }
-    }
-    void Explode()
-    {
-        GameObject eff =  Instantiate(explosionEffect, transform.position, transform.rotation);
-        eff.SetActive(true);
-        Destroy(gameObject); 
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.tag == "Ground")
+
+        // Update is called once per frame
+        void Update()
         {
-            Explode();
+            countdown -= Time.deltaTime;
+            if (countdown <= 0f && !hasExploded)
+            {
+                //Explode();
+                hasExploded = true;
+            }
+        }
+        void Explode()
+        {
+            GameObject eff = Instantiate(explosionEffect, transform.position, transform.rotation);
+            eff.SetActive(true);
+            Destroy(gameObject);
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.tag ==  "Ground" ||
+                collision.collider.tag == "Enemy")
+            {
+                Explode();
+            }
+
         }
     }
 }

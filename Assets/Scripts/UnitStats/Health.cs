@@ -6,7 +6,7 @@ namespace Shooter.UnitStats
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] private int startingHealth = 5;
+        [SerializeField] public int startingHealth = 5;
         private int currentHealth;
 
         private void OnEnable()

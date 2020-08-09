@@ -44,7 +44,5 @@ namespace Shooter.PlayerController
             set { }
         }
 
-
-
     }
 }

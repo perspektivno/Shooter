@@ -8,18 +8,20 @@ namespace Shooter.PlayerController
 {
     public class CreateWeapon : MonoBehaviour
     {
-        [SerializeField] private Transform firePoint;
         [SerializeField] private Transform weaponPoint;
-        [SerializeField] private Weapon weaponPrefab0, weaponPrefab1;
+        [SerializeField] private Weapon weaponPrefab0, weaponPrefab1, weaponPrefab2;
         private Dictionary<Slot, Weapon> libraryOfWeapons = new Dictionary<Slot, Weapon>();
         public void Create()
         {
             Weapon weapon0 = Instantiate(weaponPrefab0, weaponPoint);
-            weapon0.InitializeWeapon(firePoint);
+            weapon0.InitializeWeapon();
             Weapon weapon1 = Instantiate(weaponPrefab1, weaponPoint);
-            weapon1.InitializeWeapon(firePoint);
+            weapon1.InitializeWeapon();
+            Weapon weapon2 = Instantiate(weaponPrefab2, weaponPoint);
+            weapon2.InitializeWeapon();
             libraryOfWeapons.Add(Slot.First, weapon0);
             libraryOfWeapons.Add(Slot.Second, weapon1);
+            libraryOfWeapons.Add(Slot.Third, weapon2);
             weapon1.gameObject.SetActive(false);
             Switch(Slot.First);
             
