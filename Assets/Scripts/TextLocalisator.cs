@@ -13,13 +13,14 @@ public class TextLocalisator : MonoBehaviour
     }
     private void SetText()
     {
-        LocalisationManager.GetString(key);
-    }
+            text.text = LocalisationManager.GetString(key);
+            //LocalisationManager.onLangChange -= SetText;
+        }
     private void Start()
     {
         LocalisationManager.onLangChange += SetText;
     }
-    private void Destroy()
+    private void OnDestroy()
     {
         LocalisationManager.onLangChange -= SetText;
     }
