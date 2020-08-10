@@ -43,10 +43,6 @@ namespace Shooter.PlayerController
             RespawnManager.instance.DefaultRespawn(this);
            
         }
-        private void OnDestroy()
-        {
-            FindObjectOfType<UnitHolder>().RemovePLayer(this);
-        }
         private void OnDisable()
         {
             RespawnManager.instance.RespawnRequest(this);

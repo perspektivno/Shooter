@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   fireRate: 1
-  damage: 3
+  damage: 1
   magazine: 2
   recoilTime: 4
-  shootingType: 1
+  numberOfBullets: 3

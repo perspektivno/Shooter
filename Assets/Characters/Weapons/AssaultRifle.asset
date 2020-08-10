@@ -17,4 +17,4 @@ MonoBehaviour:
   damage: 1
   magazine: 30
   recoilTime: 2
-  numOfBulletsPerShot: 1
+  numberOfBullets: 1

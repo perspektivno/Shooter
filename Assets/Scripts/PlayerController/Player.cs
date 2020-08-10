@@ -15,8 +15,6 @@ namespace Shooter.PlayerController
         protected override void Awake()
         {
             base.Awake();
-            GetComponent<Mover>();
-            GetComponent<CreateWeapon>().Create();
             _fraction = Fraction.Alias;
         }
 
@@ -26,20 +24,6 @@ namespace Shooter.PlayerController
         }
 
         // Update is called once per frame
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                GetComponent<CreateWeapon>().Switch(CreateWeapon.Slot.First);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                GetComponent<CreateWeapon>().Switch(CreateWeapon.Slot.Second);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                GetComponent<CreateWeapon>().Switch(CreateWeapon.Slot.Third);
-            }
-        }
+
     }
 }

@@ -9,6 +9,7 @@ namespace Shooter.UnitStats
     {
         public static UnitHolder instance;
         public List<Unit> listOfPlayers = new List<Unit>();
+        public int numberOfEnemy;
         public void AddPlayer(Unit player)
         {
             listOfPlayers.Add(player);
@@ -21,7 +22,7 @@ namespace Shooter.UnitStats
         // Start is called before the first frame update
         void Start()
         {
-            Spawner.instance.CreateBoard();
+            Spawner.instance.CreateBoard(numberOfEnemy);
         }
         private void Awake()
         {

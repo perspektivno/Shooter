@@ -46,6 +46,11 @@ namespace Shooter.UnitStats
             uiButton.SetActive(true);
 
         }
+        public void ButtonLock()
+        {
+            RespawnPlayer();
+            uiButton.SetActive(false);
+        }
         public void TurnOnRespawnUi()
         {
             uiButton.gameObject.SetActive(true);

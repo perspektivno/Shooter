@@ -16,147 +16,49 @@ namespace Shooter.PlayerController
         private float recoilTimeAmount;
         private int saveMagazine;
 
-        private Vector3 newVec, newVec2;
-        Quaternion spreadAngle, spreadAngle2, spreadAngleMain;
+        Vector3[] newVecs;
+        Quaternion[] spreadAngleShot;
 
-        private Camera cam;
-
-        public Rigidbody bulletPrefabs;
-        public GameObject cursor;
-        public LayerMask layer;
-
-        public LineRenderer lineVisual;
-        public int lineSegment;
-
-        //for grenade//
-
-        private bool grenadeIsActive = false;
-        //for grenade
         public void InitializeWeapon()
         {
             recoilTimeAmount = weaponData.RecoilTime;
             saveMagazine = weaponData.Magazine;
-            //this.firePoint = firePoint;
             StopShoot();
-        }
-        void Start()
-        {
-
-            lineVisual.positionCount = lineSegment;
-            cam = Camera.main;
-        }
-        private Vector3 CalculatePosInTime(Vector3 vo, float time)
-        {
-            Vector3 Vxz = vo;
-            Vxz.y = 0f;
-            Vector3 result = firePoint.position + vo * time;
-            float sY = (-0.5f * Mathf.Abs(Physics.gravity.y) * (time * time)) + (vo.y * time) + firePoint.position.y;
-            result.y = sY;
-            return result;
-        }
-        void Visualize(Vector3 vo)
-        {
-            for (int i = 0; i < lineSegment; i++)
-            {
-                Vector3 pos = CalculatePosInTime(vo, i / (float)lineSegment);
-                lineVisual.SetPosition(i, pos);
-            }
-        }
-        private void LaunchGrenade()
-        {
-
-            Ray CamRay = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(CamRay, out hit, 100f, layer))
-            {
-                Vector3 vo = Grenade(hit.point, firePoint.position, 1f);
-                Visualize(vo);
-                cursor.SetActive(true);
-                cursor.transform.position = hit.point + Vector3.up * 2f;
-
-                Vector3 Vo = Grenade(hit.point, firePoint.position, 1f);
-                transform.rotation = Quaternion.LookRotation(Vo);
-                if (Input.GetMouseButtonDown(0) && saveMagazine > 0)
-                {
-                    Rigidbody obj = Instantiate(bulletPrefabs, firePoint.position, Quaternion.identity);
-                    obj.velocity = Vo;
-                    saveMagazine--;
-                    //OnCollisionEnter();
-                }
-            }
-            else
-            {
-                cursor.SetActive(false);
-            }
         }
         public void Awake()
         {
-            cursor = Instantiate(cursor);
+
+            newVecs = new Vector3[weaponData.NumberOfBullets];
+            spreadAngleShot = new Quaternion[weaponData.NumberOfBullets+1];
         }
-        private Vector3 Grenade(Vector3 target, Vector3 origin, float time)
+
+        private void Click(Quaternion[] spreadAngle)
         {
-            Vector3 distance = target - origin;
-            Vector3 distanceXZ = distance;
-            distanceXZ.y = 0f;
-            float Sy = distance.y;
-            float Sxz = distanceXZ.magnitude;
-            float Vxz = Sxz / time;
-            float Vy = Sy / time + 0.5f * Mathf.Abs(Physics.gravity.y) * time;
-            Vector3 result = distanceXZ.normalized;
-            result *= Vxz;
-            result.y = Vy;
-            return result;
+            StartCoroutine(GenerateBullets(PoolObjectType.Bullet, spreadAngle));
         }
-        //private void OnCollisionEnter(Collision collision)
-        //{
-        //  Destroy(collision.gameObject);
-        //}
-
-        /////////////////////////////////////////////////
-        private void Click(Quaternion spreadAngle, Quaternion spreadAngle2)
+        private IEnumerator GenerateBullets(PoolObjectType type, Quaternion[] spreadAngle)
         {
-            StartCoroutine(GenerateRoutine(PoolObjectType.Bullet, spreadAngle, spreadAngle2));
-        }
-        private IEnumerator GenerateRoutine(PoolObjectType type, Quaternion spreadAngle, Quaternion spreadAngle2)
-        {
-            newVec = spreadAngle * firePoint.forward;
-            newVec2 = spreadAngle2 * firePoint.forward;
-            GameObject ob = PoolManager.instance.GetPoolObject(type);
-            GameObject ob1 = PoolManager.instance.GetPoolObject(type);
-            GameObject ob2 = PoolManager.instance.GetPoolObject(type);
-
-            ob.GetComponent<Bullet>().SetDirection(firePoint.forward);
-            ob.transform.position = firePoint.position;
-            Debug.Log(firePoint.position);
-            ob.gameObject.SetActive(true);
-
-            ob1.GetComponent<Bullet>().SetDirection(newVec);
-            ob1.transform.position = firePoint.position;
-            ob1.gameObject.SetActive(true);
-            Debug.Log(newVec);
-
-
-            ob2.GetComponent<Bullet>().SetDirection(newVec2);
-            ob2.transform.position = firePoint.position;
-            ob2.gameObject.SetActive(true);
-            Debug.Log(newVec2);
-
-            yield return new WaitForSeconds(4f);
-            PoolManager.instance.CollObject(ob, type);
-            PoolManager.instance.CollObject(ob1, type);
-            PoolManager.instance.CollObject(ob2, type);
+            
+            
+            GameObject[] obs = new GameObject[weaponData.NumberOfBullets];
+            for(int i = 0; i < weaponData.NumberOfBullets; i++)
+            {
+                newVecs[i] = spreadAngle[i] * firePoint.forward;
+                obs[i] = PoolManager.instance.GetPoolObject(type);
+                obs[i].GetComponent<Bullet>().SetDirection(newVecs[i]);
+                obs[i].transform.position = firePoint.position;
+                obs[i].gameObject.SetActive(true);
+            }
+               
+            yield return new WaitForSeconds(3f);
+            for(int i = 0; i < weaponData.NumberOfBullets; i++)
+            {
+                PoolManager.instance.CollObject(obs[i], type);
+            }
         }
         public void Update()
         {
-            if(grenadeIsActive)
-            {
-                LaunchGrenade();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                grenadeIsActive = true;
-            } 
-            if (Input.GetButton("Fire2") && saveMagazine > 0)
+            if (Input.GetButton("Fire1") && saveMagazine > 0)
             {
                 
                 timer += Time.deltaTime;
@@ -164,17 +66,31 @@ namespace Shooter.PlayerController
                 {
                     timer -= weaponData.FireRate;
 
-                    
-                    spreadAngle = Quaternion.AngleAxis(-Random.Range(10, 20), new Vector3(0, 10, 0));
-                    spreadAngle2 = Quaternion.AngleAxis(Random.Range(10,20), new Vector3(0, 10, 0));
-                    FireGun(spreadAngle, spreadAngle2);
-                    Click(spreadAngle, spreadAngle2);
+                    spreadAngleShot[0] = Quaternion.AngleAxis(Random.Range(-5,5), new Vector3(0, 10, 0));
+                    if (weaponData.NumberOfBullets > 1)
+                    {
+                        for(int i = 1; i < weaponData.NumberOfBullets; i++)
+                        {
+                            if(i%2 == 0)
+                            {
+                                spreadAngleShot[i] = Quaternion.AngleAxis((-1) ^ i * Random.Range(i*5, i * 5 + 10), new Vector3(0, 0.1f, 0));
+                            }
+                            else
+                            {
+                                spreadAngleShot[i] = Quaternion.AngleAxis((-1) ^ i * Random.Range((i+1) * 5, (i + 1) * 5 + 10), new Vector3(0, 0.1f, 0));
+                            }
+                            
+                        }
+                    }
+                   
+                    FireGun(spreadAngleShot);
+                    Click(spreadAngleShot);
                     saveMagazine--;
                     Debug.Log($"magazine={saveMagazine}, id={weaponData.Id}");
 
                 }
             }
-            if(Input.GetButtonUp("Fire2") && saveMagazine > 0)
+            if(Input.GetButtonUp("Fire1") && saveMagazine > 0)
             {
                 StopShoot();
             }
@@ -206,30 +122,26 @@ namespace Shooter.PlayerController
                 
             }
         }
-        private void FireGun(Quaternion spreadAngle, Quaternion spreadAngle2)
+        private void FireGun(Quaternion[] spreadAngle)
         {
+            Ray[] rays = new Ray[weaponData.NumberOfBullets];
+            for(int i = 0; i < weaponData.NumberOfBullets; i++)
+            {
+                newVecs[i] = spreadAngle[i] * firePoint.forward;
+                rays[i] = new Ray(firePoint.position, newVecs[i]);
+               
+                    RaycastHit hitInfo;
+                    if (Physics.Raycast(rays[i], out hitInfo, 100))
+                    {
+                        _RayCast(hitInfo);
+                    }
+                
 
-            newVec = spreadAngle * firePoint.forward;
-            newVec2 = spreadAngle2 * firePoint.forward;
-            Ray ray = new Ray(firePoint.position, firePoint.forward);
-            Ray ray1 = new Ray(firePoint.position, newVec);
-            Ray ray2 = new Ray(firePoint.position, newVec2);
-            RaycastHit hitInfo;
+            }
+
             
-            if (Physics.Raycast(ray, out hitInfo, 100))
-            {
+            
 
-                _RayCast(hitInfo);
-            }
-            if (Physics.Raycast(ray1, out hitInfo, 100))
-            {
-                _RayCast(hitInfo);
-
-            }
-            if (Physics.Raycast(ray2, out hitInfo, 100))
-            {
-                _RayCast(hitInfo);
-            }
         }
 
         

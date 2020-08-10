@@ -18,13 +18,15 @@ namespace Shooter.UnitStats
         {
             instance = this;
         }
-        public void CreateBoard()
+        public void CreateBoard(int count)
         {
-            Unit newUnit = Instantiate(enemyGo, transform.position, Quaternion.identity);
             playerGo.gameObject.SetActive(true);
-            //Unit newPlayer = Instantiate(playerGo, transform.position, Quaternion.identity);
-            newUnit.transform.position = new Vector3(10, 1, 10);
-            //newPlayer.transform.position = new Vector3(0, 1, 0);
+            for (int i = 1; i<= count; i++)
+            {
+                Unit newUnit = Instantiate(enemyGo, transform.position, Quaternion.identity);
+                newUnit.transform.position = RespawnManager.instance.dots[i].transform.position;
+            }
+
         }
 
         // Update is called once per frame

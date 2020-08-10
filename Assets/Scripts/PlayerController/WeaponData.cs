@@ -37,10 +37,10 @@ namespace Shooter.PlayerController
             get { return recoilTime; }
             set { }
         }
-        [SerializeField] int shootingType;
-        public float ShootingType
+        [SerializeField] int numberOfBullets;
+        public int NumberOfBullets
         {
-            get { return shootingType; }
+            get { return numberOfBullets; }
             set { }
         }
 

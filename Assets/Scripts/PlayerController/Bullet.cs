@@ -10,8 +10,9 @@ namespace Shooter.PlayerController
         private Rigidbody rb;
         public void SetDirection(Vector3 dir)
         {
+            transform.rotation = Quaternion.Euler(dir + Vector3.up);
             _dir = dir;
-            rb.velocity =_dir * 10f;
+            rb.velocity =_dir * 30f;
         }
         public void Awake()
         {
