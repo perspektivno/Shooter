@@ -2,33 +2,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadScene : MonoBehaviour
+namespace Shooter.UiController
 {
-    private bool checkSound;
-    public Text sound;
-    public void RestartScene()
+    public class LoadScene : MonoBehaviour
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    public void SceneLoad(string name)
-    {
-        SceneManager.LoadScene(name);
-    }
-    public void Sound()
-    {
-        checkSound = !checkSound;
-        if (checkSound)
+        public void RestartScene()
         {
-            AudioListener.volume = 0;
-            sound.text = "Sound: On";
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        else
+        public void SceneLoad(string name)
         {
-            AudioListener.volume = 1;
-            sound.text = "Sound: Off";
+            SceneManager.LoadScene(name);
         }
 
+
+
     }
-
-
 }

@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1f5a1aa4f099f4594df175057ee783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 531812047}
 --- !u!1 &155512896
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +306,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'LOC: EN'
+  m_Text: EN
 --- !u!222 &155512899
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -684,6 +683,7 @@ GameObject:
   - component: {fileID: 913488056}
   - component: {fileID: 913488058}
   - component: {fileID: 913488057}
+  - component: {fileID: 913488059}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -751,6 +751,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913488055}
   m_CullTransparentMesh: 0
+--- !u!114 &913488059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913488055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d7212ff0ce1f945b9044ffccdf1cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: play
 --- !u!1 &1116112858
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +868,7 @@ GameObject:
   - component: {fileID: 1500586001}
   - component: {fileID: 1500586000}
   - component: {fileID: 1500585999}
+  - component: {fileID: 1500586002}
   m_Layer: 5
   m_Name: SoundButton
   m_TagString: Untagged
@@ -924,18 +938,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1500586000}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 19049047}
-        m_MethodName: Sound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1500586000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,6 +976,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500585997}
   m_CullTransparentMesh: 0
+--- !u!114 &1500586002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500585997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d7212ff0ce1f945b9044ffccdf1cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: sound
 --- !u!1 &1589833218
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +1001,8 @@ GameObject:
   - component: {fileID: 1589833222}
   - component: {fileID: 1589833221}
   - component: {fileID: 1589833220}
+  - component: {fileID: 1589833223}
+  - component: {fileID: 1589833224}
   m_Layer: 5
   m_Name: LocButton
   m_TagString: Untagged
@@ -1054,7 +1072,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1589833221}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1589833224}
+        m_MethodName: SwitchLang
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1589833221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,6 +1121,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589833218}
   m_CullTransparentMesh: 0
+--- !u!114 &1589833223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589833218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d7212ff0ce1f945b9044ffccdf1cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: lang
+--- !u!114 &1589833224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589833218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca13c3594afd8345bfb5681c399c84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1841446332
 GameObject:
   m_ObjectHideFlags: 0

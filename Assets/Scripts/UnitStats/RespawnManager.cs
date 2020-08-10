@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Shooter.PlayerController;
+using UnityEngine.UI;
 
 namespace Shooter.UnitStats
 {
     public class RespawnManager : MonoBehaviour
     {
-        private UnitHolder unitHolder;
         public static RespawnManager instance;
+        private UnitHolder unitHolder;
         public GameObject[] dots;
         private Player player = new Player();
         public GameObject uiButton;
-        
-        private void Awake()
-        {
-            instance = this;
-        }
+            
 
         private void OnEnable()
         {
@@ -25,6 +22,10 @@ namespace Shooter.UnitStats
         void Start()
         {
             unitHolder = UnitHolder.instance;
+        }
+        private void Awake()
+        {
+            instance = this;
         }
         public void RespawnRequest(Unit unit)
         {
