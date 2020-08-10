@@ -21,6 +21,11 @@ namespace Shooter.UnitStats
                 Die();
             }
         }
+
+        public void SetMaxHealth()
+        {
+            currentHealth = startingHealth;
+        }
         private void Die()
         {
             gameObject.SetActive(false);

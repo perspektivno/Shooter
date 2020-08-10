@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\PlayerController\Bullet.cs" />
     <Compile Include="Assets\Scripts\PlayerController\CreateWeapon.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Grenade.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\GrenadeHolder.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Mover.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PoolManager.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Scripts\UiController\UI.cs" />
     <Compile Include="Assets\Scripts\UnitStats\Health.cs" />
     <Compile Include="Assets\Scripts\UnitStats\OtherPlayers.cs" />
+    <Compile Include="Assets\Scripts\UnitStats\RespawnManager.cs" />
     <Compile Include="Assets\Scripts\UnitStats\Spawner.cs" />
     <Compile Include="Assets\Scripts\UnitStats\UnitHolder.cs" />
     <Compile Include="Assets\Scripts\json.cs" />

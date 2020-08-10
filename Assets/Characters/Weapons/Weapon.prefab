@@ -140,14 +140,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: e35e4b32b4d22e84ba370239a191c8f5, type: 2}
   firePoint: {fileID: 3662008151747471944}
-  lineVisual: {fileID: -955871130335568610}
-  lineSegment: 10
   bulletPrefabs: {fileID: 2137226274319676797, guid: b8f8e88faaea4e249ab77570bfead7bb,
     type: 3}
   cursor: {fileID: 8231615465668950788, guid: 04a15b0efc9eb8848909c84c1966059a, type: 3}
   layer:
     serializedVersion: 2
     m_Bits: 1
+  lineVisual: {fileID: -955871130335568610}
+  lineSegment: 10
 --- !u!120 &-955871130335568610
 LineRenderer:
   m_ObjectHideFlags: 0

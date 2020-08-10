@@ -7,7 +7,8 @@ namespace Shooter.UnitStats
 {
     public class UnitHolder : MonoBehaviour
     {
-        private List<Unit> listOfPlayers = new List<Unit>();
+        public static UnitHolder instance;
+        public List<Unit> listOfPlayers = new List<Unit>();
         public void AddPlayer(Unit player)
         {
             listOfPlayers.Add(player);
@@ -20,11 +21,11 @@ namespace Shooter.UnitStats
         // Start is called before the first frame update
         void Start()
         {
-
+            Spawner.instance.CreateBoard();
         }
         private void Awake()
         {
-            
+            instance = this;
         }
 
         // Update is called once per frame

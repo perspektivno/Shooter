@@ -197,14 +197,12 @@ namespace Shooter.PlayerController
         {
             Debug.DrawRay(firePoint.position, firePoint.forward, Color.white, 5f);
             var unit = hitInfo.collider.GetComponent<Unit>();
-            //var health = hitInfo.collider.GetComponent<Health>();
 
             if (unit != null && unit.fraction == Unit.Fraction.Enemy)
             {
                 var dmg = weaponData.Damage;
                 var health = unit.health;
                 health.TakeDamage(dmg);
-                   // unit.health.TakeDamage(weaponData.Damage);
                 
             }
         }

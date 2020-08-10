@@ -6,7 +6,7 @@ namespace Shooter.FollowCamera
 {
     public class FollowCamera : MonoBehaviour
     {
-        [SerializeField] Transform target;
+        public Transform target;
 
         // Update is called once per frame
         void LateUpdate()

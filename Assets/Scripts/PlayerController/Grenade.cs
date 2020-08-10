@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Shooter.UnitStats;
 
 namespace Shooter.PlayerController
 {
@@ -10,8 +11,7 @@ namespace Shooter.PlayerController
         float countdown;
         bool hasExploded = false;
         public GameObject explosionEffect;
-        //private GameObject eff;
-        // Start is called before the first frame update
+        private float explodeRadius = 5.0f;
         void Start()
         {
             countdown = delay;
@@ -31,7 +31,36 @@ namespace Shooter.PlayerController
         {
             GameObject eff = Instantiate(explosionEffect, transform.position, transform.rotation);
             eff.SetActive(true);
+            var units = UnitHolder.instance.listOfPlayers;
+            for(int i =0; i < units.Count; i++)
+            {
+                if (units[i] != null)
+                {
+                    if(Vector3.Distance(transform.position, units[i].transform.position) <= explodeRadius)
+                    {
+                        //Ray ray = new Ray(transform.position, units[i].transform.position);
+                        RaycastHit hit;
+                        if (Physics.Raycast(transform.position, units[i].transform.position - transform.position, out hit))
+                        {
+                             
+                            _RayCast(hit);
+                        }
+                    }
+                }
+            }
             Destroy(gameObject);
+        }
+        private void _RayCast(RaycastHit hitInfo)
+        {
+            var unit = hitInfo.collider.GetComponent<Unit>();
+
+            if (unit != null)
+            {
+                var dmg = 2;
+                var health = unit.health;
+                health.TakeDamage(dmg);
+
+            }
         }
         private void OnCollisionEnter(Collision collision)
         {

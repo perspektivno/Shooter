@@ -12,7 +12,6 @@ namespace Shooter.PlayerController
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
-            //animator = GetComponentInChildren<Animator>();
         }
         void Update()
         {
@@ -21,16 +20,10 @@ namespace Shooter.PlayerController
         }
         private void Movement()
         {
-            /*if(!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A)
-                && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-            {
-                return;
-            }*/
             var hor = Input.GetAxis("Horizontal");
             var vert = Input.GetAxis("Vertical");
             var movement = new Vector3(hor, 1, vert);
             characterController.SimpleMove(movement * Time.deltaTime * moveSpeed);
-            //animator.SetFloat("forwardSpeed", movement.magnitude);
         }
         private Vector3 LookAtCursor()
         {
@@ -39,7 +32,7 @@ namespace Shooter.PlayerController
             bool hasHit = Physics.Raycast(ray, out hit);
             if (hasHit)
             {
-                Vector3 tarPos = new Vector3(hit.point.x, 0, hit.point.z);
+                Vector3 tarPos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                 return tarPos;
             }
             return Vector3.zero;

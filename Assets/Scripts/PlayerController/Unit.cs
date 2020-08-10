@@ -8,7 +8,7 @@ namespace Shooter.PlayerController
     {
         [SerializeField]
         protected Fraction _fraction;
-        
+
         private Health _health;
 
         public Fraction fraction
@@ -18,12 +18,14 @@ namespace Shooter.PlayerController
                 return _fraction;
             }
         }
+        
         public Health health
         {
             get
             {
                 return _health;
             }
+            
         }
 
         public enum Fraction
@@ -36,14 +38,19 @@ namespace Shooter.PlayerController
             _health = GetComponent<Health>();
             
         }
+        public virtual void Respawn()
+        {
+            RespawnManager.instance.DefaultRespawn(this);
+           
+        }
         private void OnDestroy()
         {
             FindObjectOfType<UnitHolder>().RemovePLayer(this);
         }
-        private void Update()
+        private void OnDisable()
         {
-
+            RespawnManager.instance.RespawnRequest(this);
         }
-        
+
     }
 }
