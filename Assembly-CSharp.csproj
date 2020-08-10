@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\PlayerController\Unit.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Weapon.cs" />
     <Compile Include="Assets\Scripts\PlayerController\WeaponData.cs" />
+    <Compile Include="Assets\Scripts\TextLocalisator.cs" />
     <Compile Include="Assets\Scripts\UiController\LoadScene.cs" />
     <Compile Include="Assets\Scripts\UiController\LocManager.cs" />
     <Compile Include="Assets\Scripts\UiController\UI.cs" />
@@ -86,7 +87,6 @@
     <Compile Include="Assets\Scripts\UnitStats\Spawner.cs" />
     <Compile Include="Assets\Scripts\UnitStats\UnitHolder.cs" />
     <Compile Include="Assets\Scripts\json.cs" />
-    <Compile Include="Assets\TextLocalisator.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
