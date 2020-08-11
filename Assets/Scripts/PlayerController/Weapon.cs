@@ -4,13 +4,13 @@ using UnityEngine;
 using Shooter.UnitStats;
 using System.Linq;
 using UnityEngine.UI;
+using Shooter.UiController;
 using Random = UnityEngine.Random;
 
 namespace Shooter.PlayerController
 {
     public class Weapon : MonoBehaviour
     {
-        public static Weapon instance;
         public WeaponData weaponData;
         public Transform firePoint;
         private float timer;
@@ -29,16 +29,15 @@ namespace Shooter.PlayerController
         }
         public void Awake()
         {
-            instance = this;
             newVecs = new Vector3[weaponData.NumberOfBullets];
             spreadAngleShot = new Quaternion[weaponData.NumberOfBullets+1];
         }
 
         private void Click(Quaternion[] spreadAngle)
         {
-            StartCoroutine(GenerateBullets(PoolObjectType.Bullet, spreadAngle));
+            GenerateBullets(PoolObjectType.Bullet, spreadAngle);
         }
-        private IEnumerator GenerateBullets(PoolObjectType type, Quaternion[] spreadAngle)
+        private void GenerateBullets(PoolObjectType type, Quaternion[] spreadAngle)
         {
             
             
@@ -52,14 +51,15 @@ namespace Shooter.PlayerController
                 obs[i].gameObject.SetActive(true);
             }
                
-            yield return new WaitForSeconds(0.4f);
+            /*yield return new WaitForSeconds(0.4f);
             for(int i = 0; i < weaponData.NumberOfBullets; i++)
             {
                 PoolManager.instance.CollObject(obs[i], type);
-            }
+            }*/
         }
         public void Update()
         {
+            BulletUi.instance.text.text = "magazine:" + saveMagazine.ToString();
             if (Input.GetButton("Fire1") && saveMagazine > 0)
             {
                 

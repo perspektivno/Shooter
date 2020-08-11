@@ -89,7 +89,7 @@ BoxCollider:
   m_GameObject: {fileID: 1081050085665016854}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -182,7 +182,7 @@ BoxCollider:
   m_GameObject: {fileID: 3698138974188739905}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -275,7 +275,7 @@ BoxCollider:
   m_GameObject: {fileID: 6534561830373406843}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -328,14 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: e35e4b32b4d22e84ba370239a191c8f5, type: 2}
   firePoint: {fileID: 1778782840055484610}
-  bulletPrefabs: {fileID: -134852745049057370, guid: 68d47cd78411d0f4bb2881202444e28e,
-    type: 3}
-  cursor: {fileID: 0}
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
-  lineVisual: {fileID: 0}
-  lineSegment: 0
+  obs: []
 --- !u!1 &8486829769320380767
 GameObject:
   m_ObjectHideFlags: 0

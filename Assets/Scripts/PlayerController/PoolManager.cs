@@ -47,6 +47,7 @@ namespace Shooter.PlayerController
         }
         public GameObject GetPoolObject(PoolObjectType type)
         {
+
             PoolInfo selected = GetPoolByType(type);
             List<GameObject> pool = selected.pool;
             GameObject obInstance = null;
