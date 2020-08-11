@@ -25,7 +25,7 @@ namespace Shooter.PlayerController
         }
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(collision.collider.name);
+            //Debug.Log(collision.collider.name);
             PoolManager.instance.CollObject(gameObject, PoolObjectType.Bullet);
         }
         private IEnumerator BulletGoBackInThePool()

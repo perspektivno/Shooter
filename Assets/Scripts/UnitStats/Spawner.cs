@@ -25,11 +25,13 @@ namespace Shooter.UnitStats
             {
                 Unit newUnit = Instantiate(enemyGo, transform.position, Quaternion.identity);
                 newUnit.transform.position = RespawnManager.instance.dots[i].transform.position;
+                newUnit.name = "Enemy_" + i.ToString();
             }
-            for(int j = 1; j <= alias; j++)
+            for(int i = 1; i <= alias; i++)
             {
                 Unit newUnit = Instantiate(aliasGo, transform.position, Quaternion.identity);
-                newUnit.transform.position = RespawnManager.instance.dots[enemy+j].transform.position;
+                newUnit.transform.position = RespawnManager.instance.dots[enemy+ i].transform.position;
+                newUnit.name = "Ally_" + i.ToString();
             }
             
 

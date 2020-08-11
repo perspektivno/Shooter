@@ -18,3 +18,4 @@ MonoBehaviour:
   magazine: 2
   recoilTime: 4
   numberOfBullets: 3
+  weaponSprite: {fileID: 21300000, guid: a39c10053cf38844fa9e70ab25152c6c, type: 3}

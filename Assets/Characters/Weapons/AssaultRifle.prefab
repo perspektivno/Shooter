@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ac50dd860577241b105ca7aaf31bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponHolderName: Player
   weaponData: {fileID: 11400000, guid: e35e4b32b4d22e84ba370239a191c8f5, type: 2}
   firePoint: {fileID: 1778782840055484610}
   obs: []

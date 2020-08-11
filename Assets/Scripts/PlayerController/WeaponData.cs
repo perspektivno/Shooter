@@ -43,6 +43,12 @@ namespace Shooter.PlayerController
             get { return numberOfBullets; }
             set { }
         }
+        [SerializeField] Sprite weaponSprite;
+        public Sprite WeaponSprite
+        {
+            get { return weaponSprite; }
+            set { }
+        }
 
     }
 }

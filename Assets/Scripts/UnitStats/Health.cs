@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Shooter.PlayerController;
 
 namespace Shooter.UnitStats
 {
     public class Health : MonoBehaviour
     {
+        public static Health instance;
         [SerializeField] public int startingHealth = 5;
-        private int currentHealth;
+        public int currentHealth;
 
         public HealthBar healthBar;
 
+        private void Awake()
+        {
+            instance = this;
+        }
         private void OnEnable()
         {
             currentHealth = startingHealth;

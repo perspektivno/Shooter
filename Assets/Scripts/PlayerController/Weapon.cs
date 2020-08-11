@@ -11,6 +11,8 @@ namespace Shooter.PlayerController
 {
     public class Weapon : MonoBehaviour
     {
+        public static Weapon instance;
+        public string weaponHolderName;
         public WeaponData weaponData;
         public Transform firePoint;
         private float timer;
@@ -29,6 +31,7 @@ namespace Shooter.PlayerController
         }
         public void Awake()
         {
+            instance = this;
             newVecs = new Vector3[weaponData.NumberOfBullets];
             spreadAngleShot = new Quaternion[weaponData.NumberOfBullets+1];
         }
@@ -50,12 +53,6 @@ namespace Shooter.PlayerController
                 obs[i].transform.position = firePoint.position;
                 obs[i].gameObject.SetActive(true);
             }
-               
-            /*yield return new WaitForSeconds(0.4f);
-            for(int i = 0; i < weaponData.NumberOfBullets; i++)
-            {
-                PoolManager.instance.CollObject(obs[i], type);
-            }*/
         }
         public void Update()
         {
@@ -88,7 +85,7 @@ namespace Shooter.PlayerController
                     FireGun(spreadAngleShot);
                     Click(spreadAngleShot);
                     saveMagazine--;
-                    Debug.Log($"magazine={saveMagazine}, id={weaponData.Id}");
+                    //Debug.Log($"magazine={saveMagazine}, id={weaponData.Id}");
 
                 }
             }
@@ -113,14 +110,25 @@ namespace Shooter.PlayerController
 
         private void _RayCast(RaycastHit hitInfo)
         {
-            Debug.DrawRay(firePoint.position, firePoint.forward, Color.white, 5f);
+            Health hpUnit = null;
+            //Debug.DrawRay(firePoint.position, firePoint.forward, Color.white, 5f);
             var unit = hitInfo.collider.GetComponent<Unit>();
-
+            if (unit != null)
+            {
+                if (unit.GetComponent<Health>() != null)
+                {
+                    hpUnit = unit.GetComponent<Health>();
+                }
+            }
             if (unit != null && unit.fraction == Unit.Fraction.Enemy)
             {
                 var dmg = weaponData.Damage;
                 var health = unit.health;
                 health.TakeDamage(dmg);
+                if (hpUnit.currentHealth <= 0)
+                {
+                    UiManager.instance.KillFeed(weaponHolderName, hpUnit.gameObject.name.ToString(), weaponData.WeaponSprite, 1);
+                }
                 
             }
         }

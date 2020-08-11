@@ -21,7 +21,6 @@ namespace Shooter.PlayerController {
 
             lineVisual.positionCount = lineSegment;
             cam = Camera.main;
-            
         }
         
         void Visualize(Vector3 vo)

@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Shooter.UnitStats;
+using Shooter.UiController;
+using UnityEngine.UI;
 
 namespace Shooter.PlayerController
 {
     public class Grenade : MonoBehaviour
     {
+        public string grenadeHolder;
         public float delay = 3f;
+        public Sprite grenadeImage;
         float countdown;
         bool hasExploded = false;
         public GameObject explosionEffect;
@@ -53,13 +57,20 @@ namespace Shooter.PlayerController
         private void _RayCast(RaycastHit hitInfo)
         {
             var unit = hitInfo.collider.GetComponent<Unit>();
-
+            Health hpUnit = null;
             if (unit != null)
             {
+                if (unit.GetComponent<Health>() != null)
+                {
+                    hpUnit = unit.GetComponent<Health>();
+                }
                 var dmg = 2;
                 var health = unit.health;
                 health.TakeDamage(dmg);
-
+                if (hpUnit.currentHealth <= 0)
+                {
+                    UiManager.instance.KillFeed(grenadeHolder, hpUnit.gameObject.name.ToString(), grenadeImage, 1);
+                }
             }
         }
         private void OnCollisionEnter(Collision collision)
