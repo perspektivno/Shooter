@@ -10,11 +10,13 @@ namespace Shooter.PlayerController
 {
     public class Weapon : MonoBehaviour
     {
+        public static Weapon instance;
         public WeaponData weaponData;
         public Transform firePoint;
         private float timer;
         private float recoilTimeAmount;
         private int saveMagazine;
+        public GameObject[] obs;
 
         Vector3[] newVecs;
         Quaternion[] spreadAngleShot;
@@ -27,7 +29,7 @@ namespace Shooter.PlayerController
         }
         public void Awake()
         {
-
+            instance = this;
             newVecs = new Vector3[weaponData.NumberOfBullets];
             spreadAngleShot = new Quaternion[weaponData.NumberOfBullets+1];
         }
@@ -40,7 +42,7 @@ namespace Shooter.PlayerController
         {
             
             
-            GameObject[] obs = new GameObject[weaponData.NumberOfBullets];
+            obs = new GameObject[weaponData.NumberOfBullets];
             for(int i = 0; i < weaponData.NumberOfBullets; i++)
             {
                 newVecs[i] = spreadAngle[i] * firePoint.forward;
@@ -50,7 +52,7 @@ namespace Shooter.PlayerController
                 obs[i].gameObject.SetActive(true);
             }
                
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(0.4f);
             for(int i = 0; i < weaponData.NumberOfBullets; i++)
             {
                 PoolManager.instance.CollObject(obs[i], type);
@@ -135,19 +137,8 @@ namespace Shooter.PlayerController
                     {
                         _RayCast(hitInfo);
                     }
-                
-
             }
-
-            
-            
-
         }
-
-        
-        
-
-        
 
     }
 }

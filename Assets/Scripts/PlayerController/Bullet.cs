@@ -18,5 +18,9 @@ namespace Shooter.PlayerController
         {
             rb = GetComponent<Rigidbody>();
         }
+        private void OnCollisionEnter(Collision collision)
+        {
+            //PoolManager.instance.CollObject(Weapon.instance.obs[0], PoolObjectType.Bullet);
+        }
     }
 }
