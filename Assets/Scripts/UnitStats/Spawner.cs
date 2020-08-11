@@ -18,14 +18,20 @@ namespace Shooter.UnitStats
         {
             instance = this;
         }
-        public void CreateBoard(int count)
+        public void CreateBoard(int enemy, int alias)
         {
             playerGo.gameObject.SetActive(true);
-            for (int i = 1; i<= count; i++)
+            for (int i = 1; i<= enemy; i++)
             {
                 Unit newUnit = Instantiate(enemyGo, transform.position, Quaternion.identity);
                 newUnit.transform.position = RespawnManager.instance.dots[i].transform.position;
             }
+            for(int j = 1; j <= alias; j++)
+            {
+                Unit newUnit = Instantiate(aliasGo, transform.position, Quaternion.identity);
+                newUnit.transform.position = RespawnManager.instance.dots[enemy+j].transform.position;
+            }
+            
 
         }
 

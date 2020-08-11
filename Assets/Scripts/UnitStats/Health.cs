@@ -9,6 +9,8 @@ namespace Shooter.UnitStats
         [SerializeField] public int startingHealth = 5;
         private int currentHealth;
 
+        public HealthBar healthBar;
+
         private void OnEnable()
         {
             currentHealth = startingHealth;
@@ -16,6 +18,7 @@ namespace Shooter.UnitStats
         public void TakeDamage(int damageAmount)
         {
             currentHealth -= damageAmount;
+            healthBar.SetHealth(currentHealth);
             if (currentHealth <= 0)
             {
                 Die();
@@ -25,6 +28,7 @@ namespace Shooter.UnitStats
         public void SetMaxHealth()
         {
             currentHealth = startingHealth;
+            healthBar.SetMaxHealth(startingHealth);
         }
         private void Die()
         {

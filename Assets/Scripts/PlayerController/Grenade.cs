@@ -65,7 +65,9 @@ namespace Shooter.PlayerController
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.tag ==  "Ground" ||
-                collision.collider.tag == "Enemy")
+                collision.collider.tag == "Enemy" ||
+                collision.collider.tag == "Ally")
+                
             {
                 Explode();
             }

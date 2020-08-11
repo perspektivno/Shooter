@@ -63,7 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Billboard.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
+    <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Localisation\LangSwitcher.cs" />
     <Compile Include="Assets\Scripts\Localisation\LocalisationManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Bullet.cs" />

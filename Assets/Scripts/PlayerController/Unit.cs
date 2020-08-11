@@ -36,7 +36,8 @@ namespace Shooter.PlayerController
         {
             FindObjectOfType<UnitHolder>().AddPlayer(this);
             _health = GetComponent<Health>();
-            
+
+
         }
         public virtual void Respawn()
         {
