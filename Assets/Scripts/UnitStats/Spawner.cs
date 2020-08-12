@@ -23,14 +23,18 @@ namespace Shooter.UnitStats
             playerGo.gameObject.SetActive(true);
             for (int i = 1; i<= enemy; i++)
             {
+                int num = Random.Range(0, RespawnManager.instance.dots.Count);
                 Unit newUnit = Instantiate(enemyGo, transform.position, Quaternion.identity);
-                newUnit.transform.position = RespawnManager.instance.dots[i].transform.position;
+                newUnit.transform.position = RespawnManager.instance.dots[num].transform.position;
+                RespawnManager.instance.dots.Remove(newUnit.gameObject);
                 newUnit.name = "Enemy_" + i.ToString();
             }
             for(int i = 1; i <= alias; i++)
             {
+                int num = Random.Range(0, RespawnManager.instance.dots.Count);
                 Unit newUnit = Instantiate(aliasGo, transform.position, Quaternion.identity);
-                newUnit.transform.position = RespawnManager.instance.dots[enemy+ i].transform.position;
+                newUnit.transform.position = RespawnManager.instance.dots[num].transform.position;
+                RespawnManager.instance.dots.Remove(newUnit.gameObject);
                 newUnit.name = "Ally_" + i.ToString();
             }
             

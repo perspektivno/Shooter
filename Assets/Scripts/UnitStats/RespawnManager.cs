@@ -10,7 +10,7 @@ namespace Shooter.UnitStats
     {
         public static RespawnManager instance;
         private UnitHolder unitHolder;
-        public GameObject[] dots;
+        public List<GameObject> dots;
         private Player player = new Player();
         public GameObject uiButton;
             
@@ -42,7 +42,7 @@ namespace Shooter.UnitStats
             }
             
             player.health.SetMaxHealth();
-            player.transform.position = dots[Random.Range(0, dots.Length - 1)].transform.position;
+            player.transform.position = dots[Random.Range(0, dots.Count - 1)].transform.position;
             player.gameObject.SetActive(true);
             uiButton.SetActive(true);
 
@@ -62,10 +62,12 @@ namespace Shooter.UnitStats
         }
         IEnumerator DefaultRespawnDelay(float time, Unit unit)
         {
-       
+            
             yield return new WaitForSeconds(time);
+            int num = Random.Range(0, dots.Count);
             unit.health.SetMaxHealth();
             unit.gameObject.SetActive(true);
+            unit.gameObject.transform.position = dots[num].transform.position;
         }
     }
 }

@@ -7,9 +7,10 @@ namespace Shooter.PlayerController
 {
     public class Player : Unit
     {
-        
+        public static Player instance;
         protected override void Awake()
         {
+            instance = this;
             base.Awake();
             _fraction = Fraction.Alias;
         }

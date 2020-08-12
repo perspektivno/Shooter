@@ -86,6 +86,7 @@ namespace Shooter.PlayerController
                 collision.collider.tag == "Ally")
                 
             {
+                Debug.Log("E!@;");
                 Explode();
             }
 
