@@ -69,7 +69,13 @@ namespace Shooter.PlayerController
                 health.TakeDamage(dmg);
                 if (hpUnit.currentHealth <= 0)
                 {
-                    UiManager.instance.KillFeed(grenadeHolder, hpUnit.gameObject.name.ToString(), grenadeImage, 1);
+                    // UiManager.instance.KillFeed(grenadeHolder, hpUnit.gameObject.name.ToString(), grenadeImage);
+                    KillFeedBoard.instance.AddKillToDict(new KillRecord
+                    {
+                        weaponSprite = grenadeImage,
+                        killer = grenadeHolder,
+                        killed = hpUnit.gameObject.name.ToString()
+                    });
                 }
             }
         }
